@@ -20,6 +20,9 @@ class VendaController extends Controller
             'pagamento' => $request->input('pagamento')
         ]);
 
-        echo 'Registrado com succeso';
+        $msg = 'Venda registrada com sucesso';
+
+        return redirect()->route('home', ['msg' => $msg]);
+
     }
 }

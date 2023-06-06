@@ -20,6 +20,9 @@ class DespesaController extends Controller
             'pagamento' => $request->input('pagamento')
         ]);
 
-        echo 'Registrado com succeso';
+        $msg = 'Despesa registrada com sucesso';
+
+        return redirect()->route('home', ['msg' => $msg]);
+
     }
 }

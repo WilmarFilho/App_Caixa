@@ -16,6 +16,11 @@
                     <div class=''>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#VendaModal" class='btn btn-success'>Adicionar venda</button>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#DespesaModal" class='btn btn-danger'>Adicionar despesa</button>
+                        <?php if(isset($_GET['msg'])) { ?>
+                            <div class="alert alert-success mt-3" role="alert">
+                                <?php echo $_GET['msg'] ?>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <div id='VendaModal' class="modal fade" tabindex="-1" aria-labelledby="VendaModal" aria-hidden="true">

@@ -11,6 +11,11 @@ class VendaController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('vendas');;
+    }
+
 
     public function store(Request $request) {
       

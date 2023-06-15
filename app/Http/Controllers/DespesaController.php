@@ -11,6 +11,10 @@ class DespesaController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('despesas');;
+    }
 
     public function store(Request $request) {
       

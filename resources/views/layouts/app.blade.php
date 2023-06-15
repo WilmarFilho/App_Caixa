@@ -55,10 +55,22 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('home')}}">
+                                        {{ __('Controle de Caixa') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('venda.index')}}">
+                                        {{ __('Vendas') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('despesa.index')}}">
+                                        {{ __('Despesas') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('produto.index')}}">
+                                        {{ __('Produtos') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Sair') }}
+                                        {{ __('Encerrar Sessão') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

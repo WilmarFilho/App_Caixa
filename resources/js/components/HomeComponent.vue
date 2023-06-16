@@ -9,10 +9,12 @@
                     
                         <div class=''>
                             
+
+                            <slot></slot>
+
+
                         </div>
 
-                        
-                        
                     </div>
 
                 </div>

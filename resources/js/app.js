@@ -24,6 +24,12 @@ app.component('add-component', AddModalComponent);
 import HomeComponent from './components/HomeComponent.vue';
 app.component('home-component', HomeComponent);
 
+import InputComponent from './components/InputComponent.vue';
+app.component('input-component', InputComponent);
+
+import SelectComponent from './components/SelectComponent.vue';
+app.component('select-component', SelectComponent);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

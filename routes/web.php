@@ -21,8 +21,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/relatorio-atual', [App\Http\Controllers\CaixaController::class, 'index'])->name('relAtual');
+Route::post('/relatorio-consul', [App\Http\Controllers\CaixaController::class, 'consulta'])->name('relConsul');
+
 Route::resource('produto', 'App\Http\Controllers\ProdutoController');
 
 Route::resource('despesa', 'App\Http\Controllers\DespesaController');
 
 Route::resource('venda', 'App\Http\Controllers\VendaController');
+
+Route::post('/produto/{input}', [App\Http\Controllers\ProdutoController::class, 'ajax'])->name('ajax');

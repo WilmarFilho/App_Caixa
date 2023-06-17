@@ -27,7 +27,7 @@
 
         </add-component>
 
-        <add-component btn='Consultar' id='ConsultaVenda' titulo='Selecione o mês desejado' rota='' token_csrf='{{csrf_token()}}'>
+        <add-component btn='Consultar' id='ConsultaVenda' titulo='Selecione o mês desejado' rota='{{route('venda.create')}}' token_csrf='{{csrf_token()}}'>
 
             <select-component label='Selecione um mês' name='mes'></select-component>
         

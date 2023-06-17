@@ -16,6 +16,11 @@ class DespesaController extends Controller
         return view('despesas');;
     }
 
+    public function create(Request $request)
+    {
+        echo('aa');
+    }
+
     public function store(Request $request) {
       
         Despesa::create([

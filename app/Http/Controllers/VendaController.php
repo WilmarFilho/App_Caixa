@@ -13,7 +13,12 @@ class VendaController extends Controller
 
     public function index()
     {
-        return view('vendas');;
+        return view('vendas');
+    }
+
+    public function create(Request $request)
+    {
+        echo('aa');
     }
 
 

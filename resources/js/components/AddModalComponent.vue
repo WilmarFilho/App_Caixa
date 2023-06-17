@@ -18,7 +18,7 @@
                             <slot></slot>
                                     
                                        
-                            <button type='submit' class="mt-3 btn btn-primary">{{btn}}</button>
+                            <button type='submit' :style="classe" class="mt-3 btn btn-primary">{{btn}}</button>
                                     
                         </form>
                     </div>
@@ -34,6 +34,6 @@
 
 <script>
     export default {
-        props: ['btn', 'id', 'token_csrf', 'rota', 'titulo']
+        props: ['btn', 'id', 'token_csrf', 'rota', 'titulo', 'classe']
     }
 </script>

@@ -18,7 +18,69 @@ class DespesaController extends Controller
 
     public function create(Request $request)
     {
-        echo('aa');
+
+        switch($request->mes) {
+
+            case 'Janeiro':
+                $condicao1 = '2023-01-01 00:00:00';
+                $condicao2 = '2023-02-01 00:00:00';
+                break;
+            case 'Fevereiro':
+                $condicao1 = '2023-02-01 00:00:00';
+                $condicao2 = '2023-03-01 00:00:00';
+                break;
+            case 'Março':
+                $condicao1 = '2023-03-01 00:00:00';
+                $condicao2 = '2023-04-01 00:00:00';
+                break;
+            case 'Abril':
+                $condicao1 = '2023-04-01 00:00:00';
+                $condicao2 = '2023-05-01 00:00:00';
+                break;
+            case 'Maio':
+                $condicao1 = '2023-05-01 00:00:00';
+                $condicao2 = '2023-06-01 00:00:00';
+                break;
+            case 'Junho':
+                $condicao1 = '2023-06-01 00:00:00';
+                $condicao2 = '2023-07-01 00:00:00';
+                break;
+            case 'Julho':
+                $condicao1 = '2023-07-01 00:00:00';
+                $condicao2 = '2023-08-01 00:00:00';
+                break;
+            case 'Agosto':
+                $condicao1 = '2023-08-01 00:00:00';
+                $condicao2 = '2023-09-01 00:00:00';
+                break;
+            case 'Setembro':
+                $condicao1 = '2023-09-01 00:00:00';
+                $condicao2 = '2023-10-01 00:00:00';
+                break;
+            case 'Outubro':
+                $condicao1 = '2023-10-01 00:00:00';
+                $condicao2 = '2023-11-01 00:00:00';
+                break;
+            case 'Novembro':
+                $condicao1 = '2023-11-01 00:00:00';
+                $condicao2 = '2023-12-01 00:00:00';
+                break;
+            case 'Dezembro':
+                $condicao1 = '2023-12-01 00:00:00';
+                $condicao2 = '2023-13-01 00:00:00';
+                break;
+        }
+
+        $despesas = despesa::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->get();
+
+        if(isset($request->dia)) {
+
+            $condicao3 = $request->dia . '%';
+
+            $despesas = despesa::where('created_at', 'like', $condicao3)->get();
+        }
+
+        return view('despesas', ['despesas' => $despesas]);
     }
 
     public function store(Request $request) {
@@ -31,7 +93,7 @@ class DespesaController extends Controller
 
         $msg = 'Despesa registrada com sucesso';
 
-        return redirect()->route('home', ['msg' => $msg]);
+        return view('despesas', ['msg' => $msg]);
 
     }
 }

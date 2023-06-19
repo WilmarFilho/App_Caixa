@@ -11,7 +11,7 @@
                     </div>
                     
                     <div class="modal-body">
-                        <form method='POST' :action='rota' class='form-control'>
+                        <form :method='metodo' :action='rota' class='form-control'>
 
                             <input type="hidden" name="_token" :value="token_csrf">
 
@@ -34,6 +34,6 @@
 
 <script>
     export default {
-        props: ['btn', 'id', 'token_csrf', 'rota', 'titulo', 'classe']
+        props: ['btn', 'id', 'token_csrf', 'rota', 'titulo', 'classe', 'metodo']
     }
 </script>

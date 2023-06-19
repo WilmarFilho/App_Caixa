@@ -13,7 +13,30 @@
             </div>
         <?php } ?>
 
-        <add-component btn='Registrar' id='AddVenda' titulo='Adicione uma venda' rota='{{route('venda.store')}}' token_csrf='{{csrf_token()}}'>
+        <?php if(isset($vendas)) { ?>
+
+            <table class="table mt-2">
+                    <thead>
+                        <tr>
+                            <td scope="col">NOME</th>
+                            <td scope="col">VALOR</th>
+                            <td scope="col">PAGAMENTO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($vendas as $key => $venda)
+                            <tr id='despesa_{{$venda->id}}'>
+                                <td >{{$venda->nome}}</th>
+                                <td>{{$venda->valor}}</td>
+                                <td>{{$venda->pagamento}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+            </table>
+
+        <?php } ?>
+
+        <add-component metodo='POST' btn='Registrar' id='AddVenda' titulo='Adicione uma venda' rota='{{route('venda.store')}}' token_csrf='{{csrf_token()}}'>
 
             <input-component type='number' name='codpro' label='Informe o código'></input-component>
             <input-component type='number' name='qtd' label='Informe a quantidade'></input-component>
@@ -27,9 +50,11 @@
 
         </add-component>
 
-        <add-component btn='Consultar' id='ConsultaVenda' titulo='Selecione o mês desejado' rota='{{route('venda.create')}}' token_csrf='{{csrf_token()}}'>
+        <add-component metodo='GET' btn='Consultar' id='ConsultaVenda' titulo='Selecione a data ou o mês desejado' rota='{{route('venda.create')}}' token_csrf='{{csrf_token()}}'>
 
-            <select-component label='Selecione um mês' name='mes'></select-component>
+            <input-component type='date' label='Selecione o dia' name='dia'></input-component>
+
+            <select-component class='mt-2' label='Ou selecione um mês' name='mes'></select-component>
         
         </add-component>
     

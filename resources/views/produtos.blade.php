@@ -13,7 +13,7 @@
             </div>
         <?php } ?>
 
-        <add-component token_csrf='{{csrf_token()}}' rota='{{route('produto.store')}}' btn='Cadastrar' titulo='Cadastrar novo produto' id='AddProduto'>
+        <add-component metodo='POST' token_csrf='{{csrf_token()}}' rota='{{route('produto.store')}}' btn='Cadastrar' titulo='Cadastrar novo produto' id='AddProduto'>
         
             <input-component type='name' label='Informe o nome do produto' name='nome'></input-component>
             <input-component step='any' type='number' label='Informe o preço do produto' name='preco'></input-component>
@@ -21,7 +21,7 @@
 
         </add-component>
 
-        <add-component classe='display: none' rota='{{route('produto.create')}}' btn='Consultar' titulo='Consultar produto' id='ConsulProduto'>
+        <add-component metodo='POST' classe='display: none' rota='{{route('produto.create')}}' btn='Consultar' titulo='Consultar produto' id='ConsulProduto'>
         
             <input-component id='nome' type='name' label='Informe o nome do produto para consulta' name='nome'></input-component>
             <table class="table mt-2">

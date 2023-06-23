@@ -71,13 +71,13 @@ class DespesaController extends Controller
                 break;
         }
 
-        $despesas = despesa::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->get();
+        $despesas = despesa::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->where('user_id', auth()->user()->id)->get(); 
 
         if(isset($request->dia)) {
 
             $condicao3 = $request->dia . '%';
 
-            $despesas = despesa::where('created_at', 'like', $condicao3)->get();
+            $despesas = despesa::where('created_at', 'like', $condicao3)->where('user_id', auth()->user()->id)->get();
         }
 
         return view('despesas', ['despesas' => $despesas]);
@@ -86,6 +86,7 @@ class DespesaController extends Controller
     public function store(Request $request) {
       
         Despesa::create([
+            'user_id' =>  auth()->user()->id,
             'nome' => $request->input('nome'),
             'valor' => $request->input('valor'),
             'pagamento' => $request->input('pagamento')

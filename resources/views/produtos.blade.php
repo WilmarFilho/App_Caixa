@@ -24,6 +24,9 @@
         <add-component metodo='POST' classe='display: none' rota='{{route('produto.create')}}' btn='Consultar' titulo='Consultar produto' id='ConsulProduto'>
         
             <input-component id='nome' type='name' label='Informe o nome do produto para consulta' name='nome'></input-component>
+
+            <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
+
             <table class="table mt-2">
                 <thead>
                     <tr>
@@ -66,8 +69,9 @@
                 
                
                 let input = document.querySelector("#nome").value;
+                let userId = document.querySelector("#user_id").value;
         
-                let rota = '/produto/' + input
+                let rota = '/produto/' + input + '/' + userId
                 
                 $.ajax({
                     url: rota,

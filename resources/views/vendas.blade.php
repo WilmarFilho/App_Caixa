@@ -26,7 +26,7 @@
                     <tbody>
                         @foreach($vendas as $key => $venda)
                             <tr id='despesa_{{$venda->id}}'>
-                                <td >{{$venda->nome}}</th>
+                                <td >{{$venda->Produto->nome}}</th>
                                 <td>{{$venda->valor}}</td>
                                 <td>{{$venda->pagamento}}</td>
                             </tr>
@@ -38,14 +38,21 @@
 
         <add-component metodo='POST' btn='Registrar' id='AddVenda' titulo='Adicione uma venda' rota='{{route('venda.store')}}' token_csrf='{{csrf_token()}}'>
 
-            <input-component type='number' name='codpro' label='Informe o código'></input-component>
-            <input-component type='number' name='qtd' label='Informe a quantidade'></input-component>
+            <input-component id='codpro' type='number' name='codpro' label='Informe o código'></input-component>
+            <input-component id='qtd' type='number' name='qtd' label='Informe a quantidade'></input-component>
+            <input-component id='desconto' type='number' step='any' name='desconto' label='Informe o desconto'></input-component>
+            <input-component id='p_nome' disable='disable' type='text' name='' label='Produto'></input-component>
+            <input-component id='p_valor' disable='disable' step='any' type='number' name='' label='Valor'></input-component>
             <label class='mt-1'>Informe a condição de pagamento</label>
-            <select id='select_pag' class='mt-1 form-control'>
+            <select name='pagamento' id='select_pag' class='mt-1 form-control'>
                 <option>A vista</option>
                 <option>A prazo</option>
             </select>
+
             <input-component idlabel='label_id' id='input_nome' type='hidden' name='nome' label=''></input-component>
+            <input-component id='p_valor2' step='any' type='hidden' name='valor' label=''></input-component>
+
+            <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
             
 
         </add-component>
@@ -82,6 +89,89 @@
                     $('#label_id').html('');
                 }
 
+            })
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#codpro").keyup(function(){
+                
+               
+                let input = document.querySelector("#codpro").value;
+                let userId = document.querySelector("#user_id").value;
+        
+                let rota = '/produto-id/' + input + '/' + userId
+                
+                $.ajax({
+                    url: rota,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    
+                    success: function(data) {
+                        
+                        $("#p_nome").attr("value", data['nome'] )
+                        $("#p_valor").attr("value", data['preço'] )
+                      
+                    }
+
+                });
+
+            });
+
+            $("#qtd").keyup(function(){
+
+                let input = document.querySelector("#codpro").value;
+                let userId = document.querySelector("#user_id").value;
+        
+                let rota = '/produto-id/' + input + '/' + userId       
+                
+                $.ajax({
+                    url: rota,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    
+                    success: function(data) {
+
+                        let valor = data['preço'] * document.querySelector("#qtd").value;
+
+                        $("#p_valor").attr("value", valor )
+                        $("#p_valor2").attr("value", valor )
+                            
+                    }
+
+                });
+
+            })
+
+            $("#desconto").keyup(function(){
+
+                let input = document.querySelector("#codpro").value;
+                let userId = document.querySelector("#user_id").value;
+        
+                let rota = '/produto-id/' + input + '/' + userId
+                
+                $.ajax({
+                    url: rota,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    
+                    success: function(data) {
+
+                        let valor = data['preço'] * document.querySelector("#qtd").value;
+                        let desconto = document.querySelector("#desconto").value;
+
+                        let valorFinal = valor - desconto
+
+                        $("#p_valor").attr("value", valorFinal )
+                        $("#p_valor2").attr("value", valorFinal )
+                            
+                    }
+
+                });
+                
             })
 
         })

@@ -71,13 +71,13 @@ class VendaController extends Controller
                 break;
         }
 
-        $vendas = venda::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->get();
+        $vendas = venda::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->where('user_id', auth()->user()->id)->get();
 
         if(isset($request->dia)) {
 
             $condicao3 = $request->dia . '%';
-
-            $vendas = venda::where('created_at', 'like', $condicao3)->get();
+            
+            $vendas = venda::where('created_at', 'like', $condicao3)->where('user_id', auth()->user()->id)->get();
         }
 
         return view('vendas', ['vendas' => $vendas]);
@@ -87,14 +87,19 @@ class VendaController extends Controller
     public function store(Request $request) {
       
         venda::create([
-            'nome' => $request->input('nome'),
-            'valor' => $request->input('valor'),
-            'pagamento' => $request->input('pagamento')
+            'user_id' =>  auth()->user()->id,
+            'produto_id' => $request->input('codpro'),
+            'qtd' => $request->input('qtd'),
+            'cliente' => $request->input('nome'),
+            'desconto' => $request->input('desconto'),
+            'pagamento' => $request->input('pagamento'),
+            'valor' => $request->input('valor')
+
         ]);
 
         $msg = 'Venda registrada com sucesso';
 
-        return redirect()->route('home', ['msg' => $msg]);
+        return redirect()->route('venda.index', ['msg' => $msg]);
 
     }
 }

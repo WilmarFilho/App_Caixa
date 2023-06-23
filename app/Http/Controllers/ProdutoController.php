@@ -17,11 +17,11 @@ class ProdutoController extends Controller
         return view('produtos');;
     }
 
-    public function ajax($input)
+    public function ajax($input, $user)
     {
 
         $valor = '%' . $input . '%';
-        $produto = Produto::where('nome', 'like', $valor)->get();
+        $produto = Produto::where('nome', 'like', $valor)->where('user_id', $user)->get();
 
         
         $resultado['nome'] = $produto[0]->nome;
@@ -33,10 +33,22 @@ class ProdutoController extends Controller
         return $resultado;
     }
 
+    public function ajax2($input, $user)
+    {
+
+        $produto = Produto::where('id', $input)->where('user_id', $user)->get();
+
+        $resultado['nome'] = $produto[0]->nome;
+        $resultado['preço'] = $produto[0]->preço;
+        
+        return $resultado;
+    }
+
 
     public function store(Request $request) {
       
         Produto::create([
+            'user_id' =>  auth()->user()->id,
             'nome' => $request->input('nome'),
             'preço_c' => $request->input('precoc'),
             'preço' => $request->input('preco')

@@ -30,4 +30,5 @@ Route::resource('despesa', 'App\Http\Controllers\DespesaController');
 
 Route::resource('venda', 'App\Http\Controllers\VendaController');
 
-Route::post('/produto/{input}', [App\Http\Controllers\ProdutoController::class, 'ajax'])->name('ajax');
+Route::post('/produto/{input}/{user}', [App\Http\Controllers\ProdutoController::class, 'ajax'])->name('ajax');
+Route::post('/produto-id/{input}/{user}', [App\Http\Controllers\ProdutoController::class, 'ajax2'])->name('ajax2');

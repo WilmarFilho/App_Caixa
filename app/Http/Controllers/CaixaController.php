@@ -16,8 +16,8 @@ class CaixaController extends Controller
 
         $condicao = $request->dia . '%';
 
-        $vendas = venda::where('created_at', 'like', $condicao)->get();
-        $despesas = despesa::where('created_at', 'like', $condicao)->get();
+        $vendas = venda::where('created_at', 'like', $condicao)->where('user_id', auth()->user()->id)->get();
+        $despesas = despesa::where('created_at', 'like', $condicao)->where('user_id', auth()->user()->id)->get();
 
         return view('home', ['vendas' => $vendas, 'despesas' => $despesas]);
     }
@@ -76,8 +76,8 @@ class CaixaController extends Controller
                 break;
         }
 
-        $vendas = venda::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->get();
-        $despesas = despesa::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->get();
+        $vendas = venda::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->where('user_id', auth()->user()->id)->get();
+        $despesas = despesa::where('created_at', '>', $condicao1)->where('created_at', '<', $condicao2)->where('user_id', auth()->user()->id)->get();
 
         return view('home', ['vendas' => $vendas, 'despesas' => $despesas]);
         

@@ -60,4 +60,9 @@ class ProdutoController extends Controller
         return redirect()->route('produto.index', ['msg' => $msg]);
 
     }
+
+    public function ConsultaTipo(Request $request) {
+        $produto = Produto::where('tipo', $request->input('tipo'))->where('user_id', $request->input('user_id'))->orderBy('nome', 'ASC')->get();
+        return view('produtos', ['produtos' => $produto]);
+    }
 }

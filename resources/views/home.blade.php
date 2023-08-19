@@ -33,6 +33,7 @@
         
         ?>
 
+
         <?php if(isset($vendas)) { ?>
 
             <table class="table mt-2">

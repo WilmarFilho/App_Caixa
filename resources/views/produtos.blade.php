@@ -5,7 +5,8 @@
     <home-component titulo='Produtos'>
     
         <button type="button" data-bs-toggle="modal" data-bs-target="#AddProduto" class='btn btn-success'>Adicionar Produto</button>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#ConsulProduto" class='btn btn-warning m-2'>Consultar Produto</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#ConsulProduto" class='btn btn-warning m-2'>Consultar Produto Por Nome</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#ConsulTipo" class='btn btn-success m-2'>Consultar Produto Por Tipo</button>
 
         <?php if(isset($_GET['msg'])) { ?>
             <div class="alert alert-success mt-3" role="alert">
@@ -56,6 +57,52 @@
             </table>
 
         </add-component>
+
+        <add-component metodo='POST' token_csrf='{{csrf_token()}}' rota='{{route('consultatipo')}}' btn='Consultar' titulo='Consultar produto' id='ConsulTipo'>
+
+            <label class='mt-2'>Selecione o tipo do produto:</label>
+
+            <select name='tipo' class="form-control mt-2">
+            
+                <option>Salgado</option>
+                <option>Bolo</option>
+                <option>Pão/Massa</option>
+                <option>Bebida</option>
+            
+            </select>
+
+            <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
+
+        </add-component>
+
+         
+
+        <?php if(isset($produtos)) { ?>
+
+            <table class="table mt-2">
+                <thead>
+                    <tr>
+                        <td scope="col">Nome</th>
+                        <td scope="col">Preço</th>
+                        <td scope="col">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach($produtos as $indice => $produto)
+                        
+                        <tr>
+                            <td id='faturamento'>{{$produto->nome}}</th>
+                            <td id='gastos'>{{$produto->preço}}</td>
+                            <td id='lucro'>{{$produto->tipo}}</td>
+                        </tr>
+
+                    @endforeach
+                
+                </tbody>
+            </table>
+
+        <?php } ?>
     
     </home-component>
 

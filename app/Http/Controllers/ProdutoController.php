@@ -51,7 +51,8 @@ class ProdutoController extends Controller
             'user_id' =>  auth()->user()->id,
             'nome' => $request->input('nome'),
             'preço_c' => $request->input('precoc'),
-            'preço' => $request->input('preco')
+            'preço' => $request->input('preco'),
+            'tipo' => $request->input('tipo')
         ]);
 
         $msg = 'Produto registrado com sucesso';

@@ -14,6 +14,7 @@ class Produto extends Model
         'preço',
         'user_id',
         'preço_c',
+        'tipo'
     ];
 
     public function User()

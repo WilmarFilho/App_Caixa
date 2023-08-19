@@ -18,6 +18,15 @@
             <input-component type='name' label='Informe o nome do produto' name='nome'></input-component>
             <input-component step='any' type='number' label='Informe o preço do produto' name='preco'></input-component>
             <input-component step='any' type='number' label='Informe o preço de custo do produto' name='precoc'></input-component>
+            <label class='mt-2'>Escolha o tipo do produto:</label>
+            <select name='tipo' class="form-control mt-2">
+            
+                <option>Salgado</option>
+                <option>Bolo</option>
+                <option>Pão/Massa</option>
+                <option>Bebida</option>
+            
+            </select>
 
         </add-component>
 

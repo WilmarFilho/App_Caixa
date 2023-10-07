@@ -26,10 +26,16 @@ Route::post('/relatorio-consul', [App\Http\Controllers\CaixaController::class, '
 
 Route::resource('produto', 'App\Http\Controllers\ProdutoController');
 
+Route::resource('cliente', 'App\Http\Controllers\ClienteController');
+
 Route::resource('despesa', 'App\Http\Controllers\DespesaController');
 
 Route::resource('venda', 'App\Http\Controllers\VendaController');
 
 Route::post('/produto/{input}/{user}', [App\Http\Controllers\ProdutoController::class, 'ajax'])->name('ajax');
+Route::post('/cliente/{input}/{user}', [App\Http\Controllers\ClienteController::class, 'ajaxCliente'])->name('ajaxCliente');
+
 Route::post('/produto-id/{input}/{user}', [App\Http\Controllers\ProdutoController::class, 'ajax2'])->name('ajax2');
+
 Route::post('/produto-tipo', [App\Http\Controllers\ProdutoController::class, 'ConsultaTipo'])->name('consultatipo');
+Route::post('/cliente-estado', [App\Http\Controllers\ClienteController::class, 'ConsultaEstado'])->name('consultaEstado');

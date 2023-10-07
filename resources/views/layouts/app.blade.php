@@ -68,6 +68,9 @@
                                     <a class="dropdown-item" href="{{route('produto.index')}}">
                                         {{ __('Produtos') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{route('cliente.index')}}">
+                                        {{ __('Clientes ') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

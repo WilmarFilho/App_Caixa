@@ -21,6 +21,7 @@
                             <td scope="col">NOME</th>
                             <td scope="col">VALOR</th>
                             <td scope="col">PAGAMENTO</th>
+                            <td scope="col">CLIENTE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,7 @@
                                 <td >{{$venda->Produto->nome}}</th>
                                 <td>{{$venda->valor}}</td>
                                 <td>{{$venda->pagamento}}</td>
+                                <td>{{$venda->cliente}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -48,8 +50,17 @@
                 <option>A vista</option>
                 <option>A prazo</option>
             </select>
+            
+            <input-component id='cliente' type='text' name='' label='Digite o nome do cliente'></input-component>
+            <select name='cliente' id='select_cliente' class='mt-1 form-control'>
 
-            <input-component idlabel='label_id' id='input_nome' type='hidden' name='nome' label=''></input-component>
+               
+                        
+                        <option id='option_cliente'></option>
+
+                  
+            </select>
+
             <input-component id='p_valor2' step='any' type='hidden' name='valor' label=''></input-component>
 
             <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
@@ -77,19 +88,28 @@
 
         $(document).ready(function(){
 
-            $('#select_pag').on('change', function(){
+            $("#cliente").keyup(function(){
                 
-                let valorSelect = document.getElementById('select_pag').value
+               
+                let input = document.querySelector("#cliente").value;
+                let userId = document.querySelector("#user_id").value;
+        
+                let rota = '/cliente/' + input + '/' + userId
+                
+                $.ajax({
+                    url: rota,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    
+                    success: function(data) {
+                        
+                        $("#option_cliente").html(data['nome'])
+                      
+                    }
 
-                if(valorSelect == 'A prazo') {
-                    $('#input_nome').attr('type', 'name');
-                    $('#label_id').html('Informe o nome do cliente');
-                } else {
-                    $('#input_nome').attr('type', 'hidden');
-                    $('#label_id').html('');
-                }
+                });
 
-            })
+            });
 
             $.ajaxSetup({
                 headers: {

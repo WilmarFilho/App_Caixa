@@ -21,7 +21,6 @@ return new class extends Migration
             $table->timestamps();
             $table->float('desconto')->nullable();
             $table->float('valor');
-            $table->string('cliente', 100)->nullable();
             $table->string('pagamento', 20);
         });
     }

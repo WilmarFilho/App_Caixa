@@ -39,3 +39,5 @@ Route::post('/produto-id/{input}/{user}', [App\Http\Controllers\ProdutoControlle
 
 Route::post('/produto-tipo', [App\Http\Controllers\ProdutoController::class, 'ConsultaTipo'])->name('consultatipo');
 Route::post('/cliente-estado', [App\Http\Controllers\ClienteController::class, 'ConsultaEstado'])->name('consultaEstado');
+
+Route::get('/cliente-id', [App\Http\Controllers\ClienteController::class, 'showCustom'])->name('showCustom');

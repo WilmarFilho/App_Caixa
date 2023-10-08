@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Venda;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class VendaController extends Controller
@@ -85,12 +86,26 @@ class VendaController extends Controller
 
 
     public function store(Request $request) {
-      
+
+        $clientes = Cliente::where('nome', $request->input('cliente'))->where('user_id', auth()->user()->id)->get();
+
+        $cliente = $clientes[0];
+
+        if($request->input('pagamento')  == 'A prazo' ) {
+
+            $saldo_antigo = $cliente->saldo;
+
+            $novo_saldo = $saldo_antigo + $request->input('valor');
+
+            $clientes = Cliente::where('nome', $request->input('cliente'))->where('user_id', auth()->user()->id)->update(['saldo' => $novo_saldo]);
+
+        }
+
         venda::create([
             'user_id' =>  auth()->user()->id,
             'produto_id' => $request->input('codpro'),
             'qtd' => $request->input('qtd'),
-            'cliente' => $request->input('nome'),
+            'cliente' => $cliente->id,
             'desconto' => $request->input('desconto'),
             'pagamento' => $request->input('pagamento'),
             'valor' => $request->input('valor')

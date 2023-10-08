@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cliente;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -56,5 +57,23 @@ class ClienteController extends Controller
     public function ConsultaEstado(Request $request) {
         $clientes = Cliente::where('estado', $request->input('estado'))->where('user_id', $request->input('user_id'))->orderBy('nome', 'ASC')->get();
         return view('clientes', ['clientes' => $clientes]);
+    }
+
+    public function show(cliente $cliente) {
+
+        $vendas = venda::where('cliente', $cliente->id)->where('user_id', auth()->user()->id)->get();
+
+        $dadosCliente = Cliente::where('id', $cliente->id)->where('user_id', auth()->user()->id)->get();
+        
+        return view('indexCliente', ['cliente' => $dadosCliente[0], 'vendas' => $vendas]);
+    }
+
+    public function showCustom(Request $request) {
+
+        $vendas = venda::where('cliente', $cliente->id)->where('user_id', auth()->user()->id)->get();
+
+        $dadosCliente = Cliente::where('id', $request->input('id-cliente'))->where('user_id', auth()->user()->id)->get();
+        
+        return view('indexCliente', ['cliente' => $dadosCliente[0], 'vendas' => $vendas]);
     }
 }

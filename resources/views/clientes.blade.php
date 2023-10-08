@@ -49,15 +49,28 @@
                         <td scope="col">NOME</th>
                         <td scope="col">COMERCIAL</th>
                         <td scope="col">CIDADE</th>
-                        <td scope="col">VER MAIS</th>
+                        <td scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr style='vertical-align: middle !important;'>
                         <td id='p_nome'></th>
                         <td id='p_comercial'></td>
                         <td id='p_cidade'></td>
-                        <td id='p_saiba'></td>
+                        <td id='p_saiba'>
+
+                            <form method='GET' action='{{route('showCustom')}}' > 
+                            
+                                <input id='id-cliente' type='hidden' value='' name='id-cliente'>
+                                <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
+                                <button type='submit' class='btn btn-primary mt-2'>Ver mais</button>
+                            
+                            </form>
+                        
+                            
+                        
+                        </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -90,16 +103,22 @@
                         <td scope="col">Nome</th>
                         <td scope="col">Comercio</th>
                         <td scope="col">Estado</th>
+                        <td scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach($clientes as $indice => $cliente)
                         
-                        <tr>
+                        <tr style='vertical-align: middle !important;'>
                             <td >{{$cliente->nome}}</th>
                             <td >{{$cliente->nome_comercial}}</td>
                             <td >{{$cliente->estado}}</td>
+                            <td >
+
+                                <a href={{route('cliente.show', $cliente->id)}} class=" btn btn-primary">Ver Mais</a>
+            
+                            </td>
                         </tr>
 
                     @endforeach
@@ -144,7 +163,7 @@
                         $("#p_nome").html(data['nome'])
                         $("#p_comercial").html(data['nome_comercial'])
                         $("#p_cidade").html(data['cidade'])
-                        $("#p_saiba").html(data['id'])
+                        $("#id-cliente").attr("value", data['id'] )
                       
                     }
 

@@ -41,3 +41,5 @@ Route::post('/produto-tipo', [App\Http\Controllers\ProdutoController::class, 'Co
 Route::post('/cliente-estado', [App\Http\Controllers\ClienteController::class, 'ConsultaEstado'])->name('consultaEstado');
 
 Route::get('/cliente-id', [App\Http\Controllers\ClienteController::class, 'showCustom'])->name('showCustom');
+
+Route::get('/quita-venda/{cliente}/{venda}/{valor}', [App\Http\Controllers\ClienteController::class, 'quitaVenda'])->name('quitaVenda');

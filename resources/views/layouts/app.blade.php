@@ -16,6 +16,18 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <style>
+    
+        .dropdown-item {
+            font-weight: 900 !important;
+        }
+
+        .negrito label {
+            font-weight: 900;
+        }
+    
+    </style>
+
     
 
 </head>
@@ -37,7 +49,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto" style='font-weight: 900 !important'>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -50,28 +62,28 @@
                                 
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class=" nav-item dropdown" >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('home')}}">
+                                    <a class="dropdown-item my-3" href="{{route('home')}}">
                                         {{ __('Controle de Caixa') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{route('venda.index')}}">
+                                    <a class="dropdown-item my-3" href="{{route('venda.index')}}">
                                         {{ __('Vendas') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{route('despesa.index')}}">
+                                    <a class="dropdown-item my-3" href="{{route('despesa.index')}}">
                                         {{ __('Despesas') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{route('produto.index')}}">
+                                    <a class="dropdown-item my-3" href="{{route('produto.index')}}">
                                         {{ __('Produtos') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{route('cliente.index')}}">
+                                    <a class="dropdown-item my-3" href="{{route('cliente.index')}}">
                                         {{ __('Clientes ') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item my-3" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Encerrar Sessão') }}

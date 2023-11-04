@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Produto;
+use App\Models\Cliente;
 use App\Models\User;
 
 class Venda extends Model
@@ -14,7 +15,7 @@ class Venda extends Model
         'nome',
         'user_id',
         'valor',
-        'cliente',
+        'cliente_id',
         'pagamento',
         'produto_id',
         'qtd',
@@ -24,6 +25,11 @@ class Venda extends Model
     public function Produto()
     {
         return $this->belongsTo(Produto::class);
+    }
+
+    public function Cliente()
+    {
+        return $this->belongsTo(Cliente::class);
     }
 
     public function User()

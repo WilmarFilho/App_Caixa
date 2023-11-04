@@ -105,7 +105,7 @@ class VendaController extends Controller
             'user_id' =>  auth()->user()->id,
             'produto_id' => $request->input('codpro'),
             'qtd' => $request->input('qtd'),
-            'cliente' => $cliente->id,
+            'cliente_id' => $cliente->id,
             'desconto' => $request->input('desconto'),
             'pagamento' => $request->input('pagamento'),
             'valor' => $request->input('valor')

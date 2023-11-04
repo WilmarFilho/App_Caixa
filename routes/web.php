@@ -42,4 +42,6 @@ Route::post('/cliente-estado', [App\Http\Controllers\ClienteController::class, '
 
 Route::get('/cliente-id', [App\Http\Controllers\ClienteController::class, 'showCustom'])->name('showCustom');
 
+Route::get('/produto-id', [App\Http\Controllers\ProdutoController::class, 'showProdutoCustom'])->name('showProdutoCustom');
+
 Route::get('/quita-venda/{cliente}/{venda}/{valor}', [App\Http\Controllers\ClienteController::class, 'quitaVenda'])->name('quitaVenda');

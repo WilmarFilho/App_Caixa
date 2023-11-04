@@ -17,6 +17,38 @@ class ProdutoController extends Controller
         return view('produtos');;
     }
 
+    public function showProdutoCustom(Request $request) {
+
+        $produto = Produto::where('id', $request->input('id-produto'))->where('user_id', auth()->user()->id)->get();
+        
+        return view('indexProduto', ['produto' => $produto[0]]);
+    }
+
+    public function edit(Request $request) {
+
+     
+        
+        Produto::where('id', $request->input('produto-id'))->where('user_id', auth()->user()->id)->update([
+            'user_id' =>  auth()->user()->id,
+            'nome' => $request->input('nome'),
+            'preço_c' => $request->input('precoc'),
+            'preço' => $request->input('preco'),
+            'tipo' => $request->input('tipo')
+        ]);
+
+        $msg = 'Produto atualizado com sucesso';
+
+        return redirect()->route('produto.show', ['produto' => $request->input('produto-id'), 'msg' => $msg]);
+
+    }
+
+    public function show(Produto $produto) {
+
+        $produto = Produto::where('id', $produto->id)->where('user_id', auth()->user()->id)->get();
+        
+        return view('indexProduto', ['produto' => $produto[0]]);
+    }
+
     public function ajax($input, $user)
     {
 

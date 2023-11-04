@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('produto_id');
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->integer('qtd');
             $table->foreign('produto_id')->references('id')->on('produtos');
             $table->timestamps();
@@ -24,6 +26,7 @@ return new class extends Migration
             $table->string('pagamento', 20);
         });
     }
+
 
     /**
      * Reverse the migrations.

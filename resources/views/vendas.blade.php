@@ -30,7 +30,7 @@
                                 <td >{{$venda->Produto->nome}}</th>
                                 <td>{{$venda->valor}}</td>
                                 <td>{{$venda->pagamento}}</td>
-                                <td>{{$venda->cliente}}</td>
+                                <td>{{$venda->Cliente->nome_comercial}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -51,7 +51,7 @@
                 <option>A prazo</option>
             </select>
             
-            <input-component id='cliente' type='text' name='' label='Digite o nome do cliente'></input-component>
+            <input-component id='cliente' type='text' name='' label='Digite o nome do comercio'></input-component>
             <select name='cliente' id='select_cliente' class='mt-1 form-control'>
 
                
@@ -103,7 +103,7 @@
                     
                     success: function(data) {
                         
-                        $("#option_cliente").html(data['nome'])
+                        $("#option_cliente").html(data['nome_comercial'])
                       
                     }
 

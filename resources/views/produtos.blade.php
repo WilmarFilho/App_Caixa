@@ -43,7 +43,7 @@
                         <td scope="col">CODPRO</th>
                         <td scope="col">NOME</th>
                         <td scope="col">PREÇO</th>
-                        <td scope="col">PREÇO_C</th>
+                        <td scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,19 @@
                         <td id='p_id'></th>
                         <td id='p_nome'></td>
                         <td id='p_preco'></td>
-                        <td id='p_precoc'></td>
+                        <td id='p_saibamais'>
+                        
+
+                            <form method='GET' action='{{route('showProdutoCustom')}}' > 
+                            
+                                <input id='id-produto' type='hidden' value='' name='id-produto'>
+                                <input id='user_id'  type='hidden' value='{{auth()->user()->id}}' name='user_id'>
+                                <button type='submit' class='btn btn-primary mt-2'>Ver mais</button>
+                            
+                            </form>
+                        
+                        
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -64,7 +76,7 @@
 
             <select name='tipo' class="form-control mt-2">
             
-                <option>Salgado</option>
+                <option>Doce</option>
                 <option>Bolo</option>
                 <option>Pão/Massa</option>
                 <option>Bebida</option>
@@ -85,6 +97,7 @@
                         <td scope="col">Nome</th>
                         <td scope="col">Preço</th>
                         <td scope="col">Tipo</th>
+                        <td scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,6 +108,11 @@
                             <td id='faturamento'>{{$produto->nome}}</th>
                             <td id='gastos'>{{$produto->preço}}</td>
                             <td id='lucro'>{{$produto->tipo}}</td>
+                            <td >
+
+                                <a href={{route('produto.show', $produto->id)}} class=" btn btn-primary">Ver Mais</a>
+            
+                            </td>
                         </tr>
 
                     @endforeach
@@ -139,7 +157,7 @@
                         $("#p_id").html(data['id'])
                         $("#p_nome").html(data['nome'])
                         $("#p_preco").html(data['preço'])
-                        $("#p_precoc").html(data['preço_c'])
+                        $("#id-produto").attr("value", data['id'] )
                       
                     }
 

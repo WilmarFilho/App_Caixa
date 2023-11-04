@@ -61,7 +61,7 @@ class ClienteController extends Controller
     {
 
         $valor = '%' . $input . '%';
-        $produto = Cliente::where('nome', 'like', $valor)->where('user_id', $user)->get();
+        $produto = Cliente::where('nome_comercial', 'like', $valor)->where('user_id', $user)->get();
 
         
         $resultado['nome'] = $produto[0]->nome;

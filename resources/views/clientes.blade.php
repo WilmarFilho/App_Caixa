@@ -7,6 +7,8 @@
         <button type="button" data-bs-toggle="modal" data-bs-target="#AddCliente" class='btn btn-success'>Adicionar Cliente</button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#ConsulCliente" class='btn btn-warning m-2'>Consultar Cliente Por Nome</button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#ConsulEstado" class='btn btn-success m-2'>Consultar Cliente Por Estado</button>
+        <a href="{{route('consultaDevedores')}}" type="button" class='btn btn-warning m-2'>Consultar Clientes Devedores</a>
+      
 
         <?php if(isset($_GET['msg'])) { ?>
             <div class="alert alert-success mt-3" role="alert">
